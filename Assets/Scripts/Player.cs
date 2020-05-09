@@ -5,35 +5,28 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     private CharacterController _chareacterController;
+    private IMover _mover;
+
+    private Rotator _rotator;
     public IPlayerInput PlayerInput { get; set; } = new PlayerInput();
 
     private void Awake()
     {
         _chareacterController = GetComponent<CharacterController>();
+        _mover = new Mover(this);
+        _rotator = new Rotator(this);
         
     }
 
     // Update is called once per frame
     private void Update()
     {
-        Vector3 movementInput = new Vector3(PlayerInput.Horizontal, 0, PlayerInput.Vertical);
+        if (Input.GetKeyDown(KeyCode.Alpha0))
+            _mover = new NavmeshMover(this);
+        if (Input.GetKeyDown(KeyCode.Alpha1))
+            _mover = new Mover(this);
 
-        //TODO: fig out why this is correct
-        Vector3 movement = transform.rotation * movementInput;
-        _chareacterController.SimpleMove(movement);
+        _mover.Tick();
+        _rotator.Tick();
     }
-}
-
-public class PlayerInput: IPlayerInput
-{
-    public float Vertical => Input.GetAxis("Vertical");
-    public float Horizontal => Input.GetAxis("Horizontal");
-    
-    
-}
-
-public interface IPlayerInput
-{
-     float Vertical { get; }
-     float Horizontal { get; }
 }
