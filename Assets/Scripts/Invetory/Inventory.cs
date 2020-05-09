@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-internal class Inventory : MonoBehaviour
+public class Inventory : MonoBehaviour
 {
     [SerializeField] private Transform _rightHand;
     private List<Item> _items = new List<Item>();
@@ -23,7 +23,14 @@ internal class Inventory : MonoBehaviour
         Equip(item);
 
     }
-
+    public Item GetItem(Item item)
+    {
+        if (_items.Contains(item))
+        {
+            return item;
+        }
+        return null;
+    }
     private void Equip(Item item)
     {
         Debug.Log($"Equipt Item{item.gameObject.name }");

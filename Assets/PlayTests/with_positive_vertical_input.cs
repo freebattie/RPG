@@ -6,6 +6,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.SceneManagement;
 using UnityEngine.TestTools;
+using Object = UnityEngine.Object;
 
 namespace a_player
 {
@@ -131,4 +132,46 @@ namespace a_player
 
     }
 
+    public class moving_in_to_object
+    {
+        [UnityTest]
+        public IEnumerator pick_up_item()
+        {
+            
+            yield return Helpers.LoadMovementTestsScene();
+            var player = Helpers.GetPlayer();
+            player.PlayerInput.Vertical.Returns(2f);
+            Item item = Object.FindObjectOfType<Item>();
+
+            yield return new WaitForSeconds(1f);
+            Item hasItem = player.GetComponent<Inventory>().GetItem(item);
+            if(hasItem)
+            {
+                Assert.AreSame(item, hasItem);
+
+            }
+            else
+            {
+                Debug.LogError("Item not picked up");
+            }
+        }
+
+    }
+    public class equiping_picked_up_item
+    {
+        [UnityTest]
+        public IEnumerator equipt_item()
+        {
+
+            yield return Helpers.LoadMovementTestsScene();
+            var player = Helpers.GetPlayer();
+            player.PlayerInput.Vertical.Returns(2f);
+            Item item = Object.FindObjectOfType<Item>();
+            Assert.AreNotSame(item, player.GetComponent<Inventory>().ActiveItem);
+            yield return new WaitForSeconds(1f);
+
+            Assert.AreSame(item, player.GetComponent<Inventory>().ActiveItem);
+        }
+
+    }
 }
