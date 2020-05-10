@@ -8,8 +8,11 @@ public class Inventory : MonoBehaviour
     private List<Item> _items = new List<Item>();
     private Transform _itemRoot;
 
-    public Item ActiveItem { get; private set; }    
+    public Item ActiveItem { get; private set; }
+   
+    
 
+    
     private void Awake()
     {
         _itemRoot = new GameObject("Items").transform;
@@ -23,6 +26,8 @@ public class Inventory : MonoBehaviour
         Equip(item);
 
     }
+    
+    //TODO: remove, also remove test.
     public Item GetItem(Item item)
     {
         if (_items.Contains(item))
