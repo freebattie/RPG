@@ -24,6 +24,8 @@ public class InventoryUse : MonoBehaviour
         }
     }
 
+
+    // this will check for when the buttons you have setup as input for given item is pressed, and will return true when it is pressed.
     private bool WasPressed(UseMode useMode)
     {
         switch (useMode)
