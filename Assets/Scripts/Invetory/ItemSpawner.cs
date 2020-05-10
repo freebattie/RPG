@@ -12,7 +12,7 @@ public class ItemSpawner : ItemComponent
     {
         if(i < 3)
         {
-            Debug.Log("working");
+           
             Instantiate(prefab,new Vector3(i * 2f, 0, 0), Quaternion.identity);
             i++;
         }

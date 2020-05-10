@@ -1,10 +1,12 @@
 ﻿
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
     //TESTING
+    public  event Action<Item> ActiveItemChanged;
 
     [SerializeField] private Transform _rightHand;
     private List<Item> _items = new List<Item>();
@@ -40,10 +42,13 @@ public class Inventory : MonoBehaviour
     }
     private void Equip(Item item)
     {
-        Debug.Log($"Equipt Item{item.gameObject.name }");
+        
         item.transform.SetParent(_rightHand);
         item.transform.localPosition = Vector3.zero;
         item.transform.localRotation = Quaternion.identity;
         ActiveItem = item;
+
+        // ? used to check for null
+        ActiveItemChanged?.Invoke(ActiveItem);
     }
 }
