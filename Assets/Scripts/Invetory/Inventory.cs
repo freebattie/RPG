@@ -4,6 +4,8 @@ using UnityEngine;
 
 public class Inventory : MonoBehaviour
 {
+    //TESTING
+
     [SerializeField] private Transform _rightHand;
     private List<Item> _items = new List<Item>();
     private Transform _itemRoot;
