@@ -606,3 +606,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   delay: 0
   _range: 10
+--- !u!114 &6465887718887621820
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6465887718887621818}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd147edcd2b2e9f48ac24fecee089aef, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  yMax: 15
+  yMin: -15
